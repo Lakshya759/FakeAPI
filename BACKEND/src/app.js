@@ -22,9 +22,10 @@ app.get("/",(req,res)=>{
 
 //ROUTES DECLARATIONS
 import userRouter from "./modules/Authentication/user.routes.js"
+import projectRouter from "./modules/Projects/Projects.routes.js"
 
 app.use("/api/v1/users",userRouter);
-
+app.use("/api/v1/project",projectRouter)
 
 
 
