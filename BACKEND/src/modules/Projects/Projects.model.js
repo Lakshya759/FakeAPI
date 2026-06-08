@@ -21,6 +21,12 @@ const projectSchema = new Schema(
       default: "",
       maxlength: 500,
     },
+    projectSlug: {
+        type: String,
+        unique: true,
+        required: true,
+        default: () => nanoid(8)
+    },
   },
   {
     timestamps: true,

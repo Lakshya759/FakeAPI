@@ -23,9 +23,13 @@ app.get("/",(req,res)=>{
 //ROUTES DECLARATIONS
 import userRouter from "./modules/Authentication/user.routes.js"
 import projectRouter from "./modules/Projects/Projects.routes.js"
+import schemaRouter from "./modules/Schemas/schemas.routes.js"
+
+
 
 app.use("/api/v1/users",userRouter);
 app.use("/api/v1/project",projectRouter)
+app.use("/api/v1/schema",schemaRouter)
 
 
 

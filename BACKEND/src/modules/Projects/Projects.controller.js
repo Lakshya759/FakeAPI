@@ -2,7 +2,9 @@ import { asyncHandler } from "../../utils/asyncHandler.js";
 import {ApiError} from "../../utils/ApiError.js"
 import {ApiResponse} from "../../utils/ApiResponse.js"
 import {Project} from "./Projects.model.js"
-// import {Schemas} from 
+import {Schema} from "../Schemas/schemas.model.js"
+import {nanoid} from "nanoid"
+
 
 
 const createProject = asyncHandler(async (req, res) => {
@@ -28,6 +30,7 @@ const createProject = asyncHandler(async (req, res) => {
         userId: req.user._id,
         projectName: projectName.trim(),
         description: description?.trim() || "",
+        projectSlug: nanoid(8),
     });
 
     return res.status(201).json(
@@ -51,19 +54,19 @@ const deleteProject = asyncHandler(async (req, res) => {
         throw new ApiError(404, "Project not found");
     }
 
-    // const schemas = await Schema.find({
-    //     projectId: project._id,
-    // });
+    const schemas = await Schema.find({
+        projectId: project._id,
+    });
 
-    // const schemaIds = schemas.map((schema) => schema._id);
+    const schemaIds = schemas.map((schema) => schema._id);
 
     // await Endpoint.deleteMany({
     //     schemaId: { $in: schemaIds },
     // });
 
-    // await Schema.deleteMany({
-    //     projectId: project._id,
-    // });
+    await Schema.deleteMany({
+        projectId: project._id,
+    });
 
     await Project.findByIdAndDelete(project._id);
 
