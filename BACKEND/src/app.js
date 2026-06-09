@@ -24,9 +24,9 @@ app.get("/",(req,res)=>{
 import userRouter from "./modules/Authentication/user.routes.js"
 import projectRouter from "./modules/Projects/Projects.routes.js"
 import schemaRouter from "./modules/Schemas/schemas.routes.js"
+import mockRouter from "./modules/Mock_Engine/mock.routes.js"
 
-
-
+app.use("/api/v1/mock",mockRouter);
 app.use("/api/v1/users",userRouter);
 app.use("/api/v1/project",projectRouter)
 app.use("/api/v1/schema",schemaRouter)
