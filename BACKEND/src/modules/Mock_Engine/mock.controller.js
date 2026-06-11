@@ -4,6 +4,11 @@ import { Schema } from "../Schemas/schemas.model.js"
 import { asyncHandler } from "../../utils/asyncHandler.js";
 import {ApiError} from "../../utils/ApiError.js"
 import {ApiResponse} from "../../utils/ApiResponse.js"
+import {hash,sleep,searchableValues,searchData,sortData,paginateData} from "./mock.services.js"
+
+
+
+
 const generateField = (type) => {
     switch (type) {
         case "string":
@@ -55,6 +60,27 @@ const generateRecord = (fields) => {
                     field.children || []
                 );
         }
+        else if (field.type === "array") {
+
+            const arrayLength =
+                faker.number.int({
+                    min: 1,
+                    max: 5,
+                });
+
+            record[field.fieldName] =
+                Array.from(
+                    {
+                        length: arrayLength,
+                    },
+                    () =>
+                        generateRecord(
+                            field.children || []
+                        )
+                );
+
+            continue;
+        }
 
         else {
             record[field.fieldName] =
@@ -65,10 +91,10 @@ const generateRecord = (fields) => {
     return record;
 };
 
+
 const getMockData = asyncHandler(async (req, res) => {
-
+        
         const {projectSlug, endpointName} = req.params;
-
         const project =await Project.findOne({projectSlug,});
 
         if (!project) {
@@ -87,12 +113,46 @@ const getMockData = asyncHandler(async (req, res) => {
             );
         }
 
-        const data =generateRecord(schema.fields);
+
+        //--------------------IMPLEMENTATION OF DELAY-------------------------------//
+        await sleep((schema.settings.delay*1000)||2000);
+        //--------------------------------------------------------------------------//
+
+
+
+        //---------------------ERROR IMPLEMENTATION--------------------------------//
+        const errorRate =schema.settings?.errorRate || 0;
+        const errorCode =schema.settings?.errorCode || 500;
+        const randomNumber =Math.random() * 100;
+        if (randomNumber < errorRate) {
+            throw new ApiError(
+                errorCode,
+                `Simulated ${errorCode} Error`
+            );
+        }
+        //-----------------------------------------------------------------------//
+
+
+        faker.seed(hash(endpointName));
+
+        const count =Number(req.query.count)||schema.settings.defaultCount;
+
+        let data = Array.from({ length: count },() =>generateRecord(schema.fields));
+        
+        data = searchData(data,req.query.search);
+
+        data = sortData(data,req.query.sort);
+
+        //-------------------------------PAGINATION IMPLEMENTATION-----------------------//
+        const page=Number(req.query.page)||1;
+        const limit=Number(req.query.limit)||10;
+        const paginatedData=paginateData(data,page,limit);
+        //-----------------------------------------------------------------------------//
 
         return res.status(200).json(
             new ApiResponse(
                 200,
-                data,
+                paginatedData,
                 "Mock data generated successfully"
             )
         );
