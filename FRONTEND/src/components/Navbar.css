@@ -1,0 +1,73 @@
+.nav-logo-bracket {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.nav-logo-version {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-left: 2px;
+  align-self: flex-start;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-green 2s infinite;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  padding: 5px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.nav-user-icon {
+  color: var(--green);
+  font-size: 14px;
+}
+
+.nav-user-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .nav-center { display: none; }
+  .nav-user-name { display: none; }
+}

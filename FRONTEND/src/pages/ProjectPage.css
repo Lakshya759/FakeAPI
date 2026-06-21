@@ -1,0 +1,261 @@
+/* ---- BREADCRUMB ---- */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.bc-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.bc-link:hover { color: var(--green); }
+
+.bc-sep { color: var(--text-muted); }
+.bc-current { color: var(--text-secondary); }
+
+/* ---- PROJECT HEADER ---- */
+.project-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.project-detail-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.project-detail-icon {
+  font-size: 40px;
+  color: var(--green);
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.project-detail-slug {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.endpoint-url {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.endpoint-url strong { color: var(--green); }
+
+/* ---- TABS ---- */
+.project-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: var(--text-secondary);
+}
+
+.tab-active {
+  color: var(--green) !important;
+  border-bottom-color: var(--green) !important;
+}
+
+.tab-icon { font-size: 14px; }
+
+/* ---- SCHEMAS LIST ---- */
+.schemas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.schema-card {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.schema-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.schema-card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.schema-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.schema-icon {
+  color: var(--green);
+  font-size: 16px;
+}
+
+.schema-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.schema-endpoint-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.method-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.schema-endpoint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.schema-endpoint strong { color: var(--cyan); }
+
+.schema-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.schema-expand-btn {
+  font-size: 16px !important;
+  padding: 4px 8px !important;
+}
+
+/* ---- SETTINGS ROW ---- */
+.schema-settings-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.setting-label { color: var(--text-muted); }
+.setting-value { color: var(--cyan); font-weight: 600; }
+
+/* ---- FIELDS PREVIEW ---- */
+.schema-fields-preview {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.field-dot {
+  color: var(--text-muted);
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.field-toggle {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.field-toggle:hover { color: var(--text-primary); }
+
+.field-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .project-detail-info { flex-direction: column; }
+  .schema-card-actions { justify-content: flex-end; }
+}
